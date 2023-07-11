@@ -4,15 +4,39 @@ local id = game.PlaceId local name = game:GetService("MarketplaceService"):GetPr
 warn("Searching script for game: "..tostring(id).." ("..name..")...")
 function executeScript(gameName)
     warn("Found script for game: "..tostring(id).." ("..name..") - "..gameName)
+    warn("FIRE~HUB: EARLY LOADING PROCESS HAS DONE!")
     warn("Converting ["..gameName.."] to ["..gameName..".lua]...")
     gameName = tostring(gameName)..".lua"
     warn("Converted!")
     warn("Executing "..gameName.."...")
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/"..gameName))()
-    warn(gameName.." has been successfuly executed!")
+    local func,errorMessage = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/"..gameName))
+    local toReturn = "Fail"
+    if func then
+        func()
+        warn(gameName.." has been successfuly executed!")
+        toReturn = "Successful"
+    else
+        warn("Failed to execute "..gameName.." :(")
+        warn("FIRE~HUB got an Luau error:".."\10"..errorMessage)
+        toReturn = "Fail"
+    end
+    return toReturn
 end
+local toReturn = "Fail"
 if id == 6516141723 or id == 6839171747 then
-    executeScript("DOORS")return
+    toReturn = executeScript("DOORS")
+else
+    toReturn = "NoScripts"
 end
-warn("No scripts found for game: "..tostring(id).." ("..name..")")
-return
+if toReturn == "Fail" then
+    warn("An error occured when loading FIRE~HUB")
+    warn("FIRE~HUB: EARLY LOADING PROCESS HAS DONE!")
+elseif toReturn == "NoScripts" then
+    warn("No scripts was found for game: "..tostring(id).." ("..name..") :(")
+elseif toReturn == "Successful" then
+    warn("FIRE~HUB is successfully executed!")
+    warn("FIRE~HUB: EARLY LOADING PROCESS HAS DONE!")
+else
+    warn("FATAL ERROR")
+end
+return toReturn
