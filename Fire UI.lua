@@ -1,4 +1,6 @@
 local canSave = --[[readfile ~= nil and writefile ~= nil]] false
+warn("Loading fire UI with "..(canSave and "saveable" or "unsaveable").." configuration...")
+warn("Setting up the script")
 local function LUAtoJSON(lua)
 	return game.HttpService:JSONEncode(lua)
 end
@@ -7,7 +9,9 @@ local function JSONtoLUA(json)
 end
 local save = writefile
 local read = readfile
+warn("Fixing HttpService > JSON functions")
 loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/FixJSON.lua"))()
+warn("Getting config (if it is exist and you can read/save it)")
 if canSave then
 	local haveConfiguration = false
 	pcall(function()
@@ -21,7 +25,7 @@ if canSave then
 else
 	configTABLE = {}
 end
-
+warn("Generating UI")
 local Font = Enum.Font.Oswald
 local name = "Fire UI"
 local ver = "2.0.4"
@@ -97,6 +101,7 @@ close.Font = Font
 close.BorderSizePixel = 0
 close.ZIndex = 2
 close.AutoButtonColor = false
+warn("Setting up the close button...")
 close.MouseEnter:Connect(function()
 	game.TweenService:Create(close,TweenInfo.new(0.3),{BackgroundColor3 = Color3.fromRGB(255,255,0)}):Play()
 end)
@@ -113,6 +118,7 @@ close.MouseButton1Click:Connect(function()
 	wait(0)
 	screenGui:Destroy()
 end)
+warn("Setting up the minimize/maximize button...")
 local minimize = close:Clone()
 minimize.Parent = close.Parent
 minimize.Text = "-"
@@ -151,6 +157,7 @@ minimize.MouseButton1Click:Connect(function()
 	task.wait(1.8)
 	mainFrame.Visible = false
 end)
+warn("Generating UI [2]")
 local pagelist = Instance.new("ScrollingFrame",mainFrame)
 pagelist.Size = UDim2.fromScale(0.2,0.9)
 pagelist.Position = UDim2.fromScale(0,0.1)
@@ -180,6 +187,7 @@ uis.InputEnded:Connect(function(input)
 end)
 local pagesFolder = Instance.new("Folder",mainFrame)
 local pageList = {}
+warn("Generating UI functions")
 function pageList.AddPage(pageName)
 	if not table.find(configTABLE,pageName) then
 		configTABLE[pageName] = {}
@@ -530,6 +538,7 @@ list.SortOrder = Enum.SortOrder.LayoutOrder
 list.Padding = UDim.new(0.02,0)
 list.FillDirection = Enum.FillDirection.Vertical
 list.VerticalAlignment = Enum.VerticalAlignment.Bottom
+warn("Generating function: MakeNotification")
 function pageList.Notify(text,time)
 	coroutine.wrap(function()
 		local time = time or 5
@@ -579,6 +588,7 @@ function pageList.Notify(text,time)
 		frame:Destroy()
 	end)()
 end
+pageList.MakeNotification = pageList.Notify
 function isnumber(txt)
 	txt = tostring(txt)
 	if tonumber(txt) ~= nil or txt == "inf" or txt == "-inf" or txt == "nan" then
@@ -588,11 +598,13 @@ function isnumber(txt)
 	end
 end
 local pagelist = pageList
+warn("Getting some info about place...")
 local placeName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
 if not game["Run Service"]:IsStudio() then
 	pageList.Notify("Please wait, loading script for game "..placeName.."...",5)
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/GetInfo.lua"))()
 end
+warn("Generating 'Main' page...")
 local page = pageList.CreatePage("Main")
 page.CreateLabel("NO MORE VERSIONS!")
 page.CreateLabel(fullName.." was made by GodWorldX - Infernus#0863")
@@ -623,7 +635,9 @@ page.CreateTextBox('Make notification: [Prefix: ";"] [Text,time] ',
 		pagelist.Notify(split[1],tonumber(split[2]))
 	end
 )
+warn("Animating UI")
 game.TweenService:Create(mainFrame,TweenInfo.new(2,Enum.EasingStyle.Exponential),{Size = UDim2.fromScale(0.3,0.4)}):Play()
 mainFrame.Visible = true
+warn("FIRE-HUB almost loaded, wait a bit...")
 pageList.Notify("FIRE-HUB almost loaded, wait a bit...",5)
 return pageList,close,screenGui
