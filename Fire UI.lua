@@ -7,12 +7,7 @@ local function JSONtoLUA(json)
 end
 local save = writefile
 local read = readfile
-if not _G.fixedJSON then
-	_G.fixedJSON = true
-	loadstring(game:HttpGet('https://raw.githubusercontent.com/Robbie-Wittenhagen/JSON/Main/JSON.lua')..'\n\nhookfunction(game.HttpService.JSONEncode, JSON["encode"])\nhookfunction(game.HttpService.JSONDecode, JSON["decode"])')()
-end
 
-repeat task.wait(0) until hwid or cant
 if canSave then
 	local haveConfiguration = false
 	pcall(function()
