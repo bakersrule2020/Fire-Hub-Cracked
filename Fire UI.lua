@@ -625,5 +625,5 @@ page.CreateTextBox('Make notification: [Prefix: ";"] [Text,time] ',
 )
 game.TweenService:Create(mainFrame,TweenInfo.new(2,Enum.EasingStyle.Exponential),{Size = UDim2.fromScale(0.3,0.4)}):Play()
 mainFrame.Visible = true
-pageList.Notify("Welcome to FIRE-HUB!".."\10".."Script: "..placeName,5)
+pageList.Notify("FIRE-HUB almost loaded, wait a bit...",5)
 return pageList,close,screenGui
