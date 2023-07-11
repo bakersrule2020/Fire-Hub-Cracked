@@ -1,4 +1,4 @@
-local canSave = readfile ~= nil and writefile ~= nil
+local canSave = --[[readfile ~= nil and writefile ~= nil]] false
 local function LUAtoJSON(lua)
 	return game.HttpService:JSONEncode(lua)
 end
