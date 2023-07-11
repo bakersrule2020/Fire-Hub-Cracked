@@ -11,24 +11,7 @@ if not _G.fixedJSON then
 	_G.fixedJSON = true
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/Robbie-Wittenhagen/JSON/Main/JSON.lua')..'\n\nhookfunction(game.HttpService.JSONEncode, JSON["encode"])\nhookfunction(game.HttpService.JSONDecode, JSON["decode"])')()
 end
-local hwid = _G.hwid or nil
-local cant = false
-task.spawn(function()
-	local http_request = syn and syn.request or request
-	local body, decoded
-	if http_request and not hwid then
-		body = http_request({Url = 'https://httpbin.org/get'; Method = 'GET'}).Body
-		decoded = game:GetService('HttpService'):JSONDecode(body)
-		for i, v in pairs(decoded.headers) do
-			if string.find(i, 'Fingerprint') then hwid = v; _G.hwid = hwid break; end
-		end
-	elseif not http_request and not hwid then
-		cant = true
-	end
-	if hwid then
-		cant = false
-	end
-end)
+
 repeat task.wait(0) until hwid or cant
 if canSave then
 	local haveConfiguration = false
