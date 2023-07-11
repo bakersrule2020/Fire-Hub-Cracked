@@ -23,8 +23,8 @@ else
 end
 
 local Font = Enum.Font.Oswald
-local name = "Fire Hub"
-local ver = "2.0.2"
+local name = "Fire UI"
+local ver = "2.0.3"
 local fullName = name.." ["..ver.."]"
 _G.fullName = _G.fullName or fullName
 _G.actualName = _G.actualName or name
@@ -36,11 +36,11 @@ local clickSound = Instance.new("Sound",screenGui)
 clickSound.SoundId = "rbxassetid://558993260"
 local mainFrame = Instance.new("Frame",screenGui)
 mainFrame.Size = UDim2.fromScale(0,0.4)
-game.TweenService:Create(mainFrame,TweenInfo.new(2,Enum.EasingStyle.Exponential),{Size = UDim2.fromScale(0.3,0.4)}):Play()
 mainFrame.BorderSizePixel = 0
 mainFrame.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
 mainFrame.AnchorPoint = Vector2.new(0.5,0.5)
 mainFrame.Position = UDim2.fromScale(0.5,0.5)
+mainFrame.Visible = false
 local invisTopFrame = Instance.new("TextButton",screenGui)
 local topFrame = Instance.new("Frame",mainFrame)
 topFrame.BorderSizePixel = 0
@@ -576,35 +576,51 @@ function pageList.Notify(text,time)
 		frame:Destroy()
 	end)()
 end
-if game["Run Service"]:IsStudio() then
-	local page = pageList.AddPage("test")
-	page.CreateLabel("test")
-	page.CreateSwitch("test",function(a)
-		print(a)
-	end)
-	page.CreateSlider("test",0,1,1,function(a)
-		print(a)
-	end)
-	page.CreateSlider("test",1,3,1,function(a)
-		print(a)
-	end)
-	page.CreateSlider("test",3,5,0.2,function(a)
-		print(a)
-	end)
-	page.CreateTextBox("test",function(a)
-		print(a)
-	end)
-	page.CreateDropdown("test",{
-		["yes"] = "YeS",
-		["no"] = "No",
-		["ok"] = "oK",
-	},function(funcName)
-		print("funcName")
+function isnumber(txt)
+	txt = tostring(txt)
+	if tonumber(txt) ~= nil or txt == "inf" or txt == "-inf" or txt == "nan" then
+		return true
+	else
+		return false
 	end
-	)
-	page.CreateButton("test",function(a)
-		print(a)
-	end)
-	pageList.Notify("test",5)
 end
-return pageList,close,mainFrame,screenGui,logo,title
+local pagelist = pageList
+local placeName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
+if not game["Run Service"]:IsStudio() then
+	pageList.Notify("Please wait, loading script for game "..placeName.."...",5)
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/GetInfo.lua"))()
+end
+local page = pageList.CreatePage("Main")
+page.CreateLabel("NO MORE VERSIONS!")
+page.CreateLabel(fullName.." was made by GodWorldX - Infernus#0863")
+page.CreateTextBox("Custom logo [IMAGE ID]",
+	function(id)
+		if id ~= "" then
+			logo.Image = id
+		else
+			logo.Image = "http://www.roblox.com/asset/?id=876744268"
+		end
+	end
+)
+page.CreateTextBox("Custom name",
+	function(id)
+		if id ~= "" then
+			title.Text = id
+		else
+			title.Text = "Fire~Doors"
+		end
+	end
+)
+page.CreateTextBox('Make notification: [Prefix: ";"] [Text,time] ',
+	function(id)
+		local split = string.split(id,";")
+		if not isnumber(split[2]) or #split ~= 2 then
+			return
+		end
+		pagelist.Notify(split[1],tonumber(split[2]))
+	end
+)
+game.TweenService:Create(mainFrame,TweenInfo.new(2,Enum.EasingStyle.Exponential),{Size = UDim2.fromScale(0.3,0.4)}):Play()
+mainFrame.Visible = true
+pageList.Notify("Welcome to FIRE-HUB!".."\10".."Script: "..placeName,5)
+return pageList,close,screenGui
