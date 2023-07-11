@@ -302,6 +302,7 @@ function pageList.AddPage(pageName)
 	end
 	function funcs.CreateTextBox(text,func,default)
 		local default = default or ""
+		local d = default
 		local label = Instance.new("TextBox",frame)
 		label.PlaceholderText = text
 		label.Font = Font
@@ -344,6 +345,7 @@ function pageList.AddPage(pageName)
 	end
 	function funcs.CreateSwitch(text,func,default)
 		local default = default or false
+		local d = default
 		local toggle = default
 		local label = Instance.new("TextButton",frame)
 		label.Text = text
@@ -414,12 +416,13 @@ function pageList.AddPage(pageName)
 		coroutine.wrap(function()
 			close.MouseButton1Click:Wait()
 			task.wait(1)
-			func(false)
+			func(d)
 		end)()
 		return label
 	end
 	function funcs.CreateSlider(text,minVal,maxVal,step,func,default)
 		local default = default or minVal
+		local d = default
 		local actualMinVal = 0
 		local actualMaxVal = maxVal-minVal
 		local steps = (actualMaxVal/step)+1
@@ -446,7 +449,6 @@ function pageList.AddPage(pageName)
 		currentStep.Size = UDim2.fromScale(0.2,1)
 		currentStep.AnchorPoint = Vector2.new(0,0.5)
 		currentStep.Position = UDim2.fromScale(0.5,0.5)
-		currentStep.Text = tostring(minVal)
 		currentStep.TextScaled = true
 		currentStep.Font = Font
 		currentStep.TextXAlignment = Enum.TextXAlignment.Right
@@ -469,6 +471,7 @@ function pageList.AddPage(pageName)
 			end)
 		end
 		func(default)
+		currentStep.Text = tostring(default)
 		for i=1,steps do
 			local stepButton = Instance.new("TextButton",sliderFrame)
 			stepButton.BackgroundTransparency = 1
@@ -510,7 +513,7 @@ function pageList.AddPage(pageName)
 		coroutine.wrap(function()
 			close.MouseButton1Click:Wait()
 			task.wait(1)
-			func(minVal)
+			func(d)
 		end)()
 		return label
 	end
