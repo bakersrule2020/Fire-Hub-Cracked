@@ -24,7 +24,7 @@ end
 
 local Font = Enum.Font.Oswald
 local name = "Fire UI"
-local ver = "2.0.3"
+local ver = "2.0.4"
 local fullName = name.." ["..ver.."]"
 _G.fullName = _G.fullName or fullName
 _G.actualName = _G.actualName or name
