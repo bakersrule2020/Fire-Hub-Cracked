@@ -53,4 +53,5 @@ elseif toReturn == "Successful" then
 else
     warn("FATAL ERROR")
 end
+warn(toReturn)
 return toReturn
