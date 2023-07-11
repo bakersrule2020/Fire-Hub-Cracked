@@ -7,7 +7,7 @@ local function JSONtoLUA(json)
 end
 local save = writefile
 local read = readfile
-
+loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/FixJSON.lua"))()
 if canSave then
 	local haveConfiguration = false
 	pcall(function()
