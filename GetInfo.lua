@@ -18,3 +18,4 @@ coroutine.wrap(function()
 	end)
 end)()
 repeat task.wait(0) until _G.hwid or cant
+print(cant, _G.hwid)
