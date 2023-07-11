@@ -1,3 +1,10 @@
+local games = {
+    ["DOORS"] = {
+        [6516141723] = true,
+        [6839171747] = true,
+    },
+}
+
 warn("FIRE~HUB: EARLY LOADING PROCESS HAS BEGUN...")
 warn("Getting place info...")
 local id = game.PlaceId local name = game:GetService("MarketplaceService"):GetProductInfo(id).Name
@@ -23,9 +30,16 @@ function executeScript(gameName)
     return toReturn
 end
 local toReturn = "Fail"
-if id == 6516141723 or id == 6839171747 then
-    toReturn = executeScript("DOORS")
-else
+local foundGame = false
+for gameName,ids in pairs(games) do
+    for ID,bool in pairs(ids) do
+        if ID == id and bool then
+            foundGame = true
+            executeScript(gameName)
+        end
+    end
+end
+if not foundGame then
     toReturn = "NoScripts"
 end
 if toReturn == "Fail" then
