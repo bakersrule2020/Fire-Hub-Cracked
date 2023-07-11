@@ -6,5 +6,5 @@ function executeScript(gameName)gameName = tostring(gameName).."lua" warn("Found
 if id == 6516141723 or id == 6839171747 then
     executeScript("DOORS")return
 end
-warn("No scripts found for game: "..tostring(id))
+warn("No scripts found for game: "..tostring(id).." ("..name..")")
 return
