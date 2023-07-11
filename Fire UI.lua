@@ -610,7 +610,7 @@ page.CreateTextBox("Custom name",
 		if id ~= "" then
 			title.Text = id
 		else
-			title.Text = "Fire~Doors"
+			title.Text = "Fire~HUB"
 		end
 	end
 )
