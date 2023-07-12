@@ -14,9 +14,6 @@ pcall(function()
 			elseif not http_request and not hwid then
 				cant = true
 			end
-			if hwid then
-				cant = false
-			end
 		end)
 	end)()
 end)
