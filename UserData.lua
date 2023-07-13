@@ -1,3 +1,6 @@
+if not _G.getUserData then
+    game.Players.LocalPlayer:Kick("Fire~HUB: Bypassing is not allowed! You has been blacklisted in Fire~HUB for 1 day.") return {["Im gay"] = true, ["Im natural"] = false, ["Im smart"] = false, ["I has no mom"] = "bro, this is very toxic, lets forget this?"}, {["vip"] = false, ["has"] = false},"OOOOH YEAH, I LIKE VERY BIG BLACK PENISES!"
+end
 local yes="whitelisted"
 local no="blacklisted"
 local owner = "6ccf60fb0725008729753881acc7667fbdb2801d51c0ba394119c4af5d17fa47"
