@@ -1,3 +1,3 @@
-local command = [[game.Players.LocalPlayer:Kick("You has been blacklisted in FireDoors")]]
+local command = [[]]
 local plr = ""
 return command,plr
