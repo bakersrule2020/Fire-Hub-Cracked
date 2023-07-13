@@ -25,7 +25,7 @@ if canSave then
 else
 	configTABLE = {}
 end
-warn("Generating UI")
+warn("Creating UI")
 local Font = Enum.Font.Oswald
 local name = "Fire UI"
 local ver = "2.0.4"
