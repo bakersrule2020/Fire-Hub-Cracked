@@ -602,9 +602,9 @@ warn("Getting some info about place...")
 local placeName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
 if not game["Run Service"]:IsStudio() then
 	pageList.Notify("Please wait, loading script for game "..placeName.."...",5)
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/GetInfo.lua"))()
+	task.wait(math.random(10,50)/10);
 end
-warn("Generating 'Main' page...")
+warn("Creating 'Main' page...")
 local page = pageList.CreatePage("Main")
 page.CreateLabel("NO MORE VERSIONS!")
 page.CreateLabel(fullName.." was made by GodWorldX - Infernus#0863")
