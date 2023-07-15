@@ -6,8 +6,6 @@ local games = {
 }
 
 warn("FIRE~HUB: EARLY LOADING PROCESS HAS BEGUN...")
-warn("Fixing JSON for quicker loading...")
-loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/FixJSON.lua"))()
 warn("Getting place info...")
 local id = game.PlaceId local name = game:GetService("MarketplaceService"):GetProductInfo(id).Name
 warn("Searching script for game: "..tostring(id).." ("..name..")...")
