@@ -225,6 +225,9 @@ uis.InputBegan:Connect(function(input)
 		m1Down = true
 	end
 end)
+configEvent.Event:Connect(function(name)
+	configTable = read("Fire~HUB/"..name..".Fire",{Defalt = {},name = {}})
+end)
 uis.InputEnded:Connect(function(input)
 	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
 		m1Down = false
@@ -280,7 +283,14 @@ function pageList.AddPage(pageName)
 		label.TextColor3 = Color3.fromRGB(255,200,100)
 		label.TextXAlignment = Enum.TextXAlignment.Left
 		label:GetPropertyChangedSignal("Text"):Connect(function()
-
+			pcall(function()
+				configTable[pageName]["Label"..text] = label.Text
+			end)
+		end)
+		configEvent.Event:Connect(function()
+			task.wait(1)
+			local prevVal = label.Text
+			label.Text = configTable[pageName]["Label"..text]
 		end)
 		local funcs = {}
 		function funcs.SetText(txt)
@@ -388,6 +398,15 @@ function pageList.AddPage(pageName)
 		label.TextScaled = true
 		label.BorderSizePixel = 0
 		label.TextColor3 = Color3.fromRGB(255,200,100)
+		label:GetPropertyChangedSignal("Text"):Connect(function()
+			pcall(function()
+				configTable[pageName]["Button"..text] = label.Text
+			end)
+		end)
+		configEvent.Event:Connect(function()
+			task.wait(1)
+			label.Text = configTable[pageName]["Button"..text]
+		end)
 		label.MouseButton1Click:Connect(function()
 			func()
 			clickSound:Play()
@@ -420,6 +439,19 @@ function pageList.AddPage(pageName)
 		label.ClearTextOnFocus = false
 		label.Text = default
 		label.TextXAlignment = Enum.TextXAlignment.Left
+		label:GetPropertyChangedSignal("Text"):Connect(function()
+			pcall(function()
+				configTable[pageName]["TextBox"..text] = label.Text
+			end)
+		end)
+		configEvent.Event:Connect(function()
+			task.wait(1)
+			local prevVal = label.Text
+			label.Text = configTable[pageName]["TextBox"..text]
+			if label.Text ~= prevVal then
+				func(label.Text)
+			end
+		end)
 		label.FocusLost:Connect(function(enter)
 			if enter then
 				func(label.Text)
@@ -496,6 +528,7 @@ function pageList.AddPage(pageName)
 				status.Text = "ON"
 				game.TweenService:Create(status,TweenInfo.new(0.1),{BackgroundColor3 = Color3.fromRGB(255,255,0)}):Play()
 			end
+			configTable[pageName]["Switch"..text] = toggle
 			func(toggle)
 		end)
 		local grad = Instance.new("UIGradient",status)
@@ -526,6 +559,12 @@ function pageList.AddPage(pageName)
 		function funcs.SetText(text)
 			textHolder.Text = text
 		end
+		configEvent.Event:Connect(function()
+			task.wait(1)
+			local prevVal = toggle
+			funcs.SetValue(configTable[pageName]["Switch"..text])
+			toggle = configTable[pageName]["Switch"..text]
+		end)
 		function funcs.ReturnToggle()
 			return label
 		end
@@ -570,6 +609,7 @@ function pageList.AddPage(pageName)
 		UITable.FillDirection = Enum.FillDirection.Horizontal
 		UITable.FillEmptySpaceColumns = true
 		UITable.SortOrder = Enum.SortOrder.LayoutOrder
+		local step = default
 		if default ~= minVal then
 			func(default)
 			currentStep.Text = tostring(default)
@@ -602,7 +642,9 @@ function pageList.AddPage(pageName)
 						end
 					end
 					stepButton.BackgroundTransparency = 0
-					func(cStep+minVal)
+					step = cStep+minVal
+					configTable[pageName]["Slider"..text] = step
+					func(step)
 				end
 			end
 			stepButton.MouseEnter:Connect(function()
@@ -632,6 +674,12 @@ function pageList.AddPage(pageName)
 				end
 			end
 		end
+		configEvent.Event:Connect(function()
+			task.wait(1)
+			local prevVal = step
+			step = configTable[pageName]["Switch"..text]
+			funcs.SetValue(step)
+		end)
 		function funcs.ReturnLabel()
 			return label
 		end
@@ -762,7 +810,7 @@ page.CreateTextBox('Make notification: [Prefix: ";"] [Text,time] ',
 		pagelist.Notify(split[1],tonumber(split[2]))
 	end
 )
---[[page.CreateLabel("--Configs--")
+page.CreateLabel("--Configs--")
 if configs then
 	local text = "default"
 	page.CreateTextBox("Config name",function(txt)
@@ -792,6 +840,7 @@ if configs then
 				originalText = text
 				text = "Default"
 			end
+			pageList.Notify("Loading config: "..text,5)
 			configEvent:Fire(text)
 			if originalText then
 				text = originalText
@@ -800,7 +849,7 @@ if configs then
 	end)
 else
 	page.CreateLabel("--Your exploit is dont support configs system--")
-end]]
+end
 warn("FIRE-HUB almost loaded, wait a bit...")
 pageList.Notify("FIRE-HUB almost loaded, wait a bit...",5)
 warn("Animating UI")
