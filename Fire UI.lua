@@ -274,6 +274,7 @@ function pageList.AddPage(pageName)
 		btn.Visible = bool
 	end
 	function funcs.CreateLabel(text)
+		configTable[pageName]["Label"..text] = text
 		local label = Instance.new("TextLabel",frame)
 		label.Text = text
 		label.Font = Font
@@ -289,8 +290,9 @@ function pageList.AddPage(pageName)
 		end)
 		configEvent.Event:Connect(function()
 			task.wait(1)
-			local prevVal = label.Text
-			label.Text = configTable[pageName]["Label"..text]
+			pcall(function()
+				label.Text = configTable[pageName]["Label"..text]
+			end)
 		end)
 		local funcs = {}
 		function funcs.SetText(txt)
@@ -305,6 +307,7 @@ function pageList.AddPage(pageName)
 		return funcs
 	end
 	function funcs.CreateDropdown(text,objects,func)
+		configTable[pageName]["DropDown"..text] = nil
 		local label = Instance.new("TextButton",frame)
 		label.Font = Font
 		label.BackgroundColor3 = Color3.fromRGB(75,60,45)
@@ -391,6 +394,7 @@ function pageList.AddPage(pageName)
 		return funcs
 	end
 	function funcs.CreateButton(text,func)
+		configTable[pageName]["Button"..text] = text
 		local label = Instance.new("TextButton",frame)
 		label.Text = "["..text.."]"
 		label.Font = Font
@@ -405,7 +409,9 @@ function pageList.AddPage(pageName)
 		end)
 		configEvent.Event:Connect(function()
 			task.wait(1)
-			label.Text = configTable[pageName]["Button"..text]
+			pcall(function()
+				label.Text = configTable[pageName]["Button"..text]
+			end)
 		end)
 		label.MouseButton1Click:Connect(function()
 			func()
@@ -426,6 +432,7 @@ function pageList.AddPage(pageName)
 		return funcs
 	end
 	function funcs.CreateTextBox(text,func,default)
+		configTable[pageName]["TextBox"..text] = text
 		local default = default or ""
 		local d = default
 		local label = Instance.new("TextBox",frame)
@@ -446,11 +453,13 @@ function pageList.AddPage(pageName)
 		end)
 		configEvent.Event:Connect(function()
 			task.wait(1)
-			local prevVal = label.Text
-			label.Text = configTable[pageName]["TextBox"..text]
-			if label.Text ~= prevVal then
-				func(label.Text)
-			end
+			pcall(function()
+				local prevVal = label.Text
+				label.Text = configTable[pageName]["TextBox"..text]
+				if label.Text ~= prevVal then
+					func(label.Text)
+				end
+			end)
 		end)
 		label.FocusLost:Connect(function(enter)
 			if enter then
@@ -482,6 +491,7 @@ function pageList.AddPage(pageName)
 		return funcs
 	end
 	function funcs.CreateSwitch(text,func,default)
+		configTable[pageName]["Switch"..text] = text
 		local default = default or false
 		local text = text ~= nil and tostring(text) or "Switch"
 		local d = default
@@ -572,6 +582,7 @@ function pageList.AddPage(pageName)
 		return funcs
 	end
 	function funcs.CreateSlider(text,minVal,maxVal,step,func,default)
+		configTable[pageName]["Slider"..text] = text
 		local default = default or minVal
 		local d = default
 		local actualMinVal = 0
