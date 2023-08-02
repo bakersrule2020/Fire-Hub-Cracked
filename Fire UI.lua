@@ -64,7 +64,7 @@ local read = function(path,newIfNotExist)
 	end
 end
 makeFolder("Fire~HUB")
-if not pathExist("Fire~HUB/Default.Fire") then
+if not pathExist("Fire~HUB/Default"..game.PlaceId..".Fire") then
 	save()
 end
 warn("Creating UI")
@@ -226,7 +226,7 @@ uis.InputBegan:Connect(function(input)
 	end
 end)
 configEvent.Event:Connect(function(name)
-	configTable = read("Fire~HUB/"..name..".Fire",{Defalt = {},name = {}})
+	configTable = read("Fire~HUB/"..name..game.PlaceId..".Fire",{Defalt = {},name = {}})
 end)
 uis.InputEnded:Connect(function(input)
 	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
@@ -307,7 +307,6 @@ function pageList.AddPage(pageName)
 		return funcs
 	end
 	function funcs.CreateDropdown(text,objects,func)
-		configTable[pageName]["DropDown"..text] = nil
 		local label = Instance.new("TextButton",frame)
 		label.Font = Font
 		label.BackgroundColor3 = Color3.fromRGB(75,60,45)
@@ -432,7 +431,7 @@ function pageList.AddPage(pageName)
 		return funcs
 	end
 	function funcs.CreateTextBox(text,func,default)
-		configTable[pageName]["TextBox"..text] = text
+		configTable[pageName]["TextBox"..text] = default
 		local default = default or ""
 		local d = default
 		local label = Instance.new("TextBox",frame)
@@ -491,7 +490,7 @@ function pageList.AddPage(pageName)
 		return funcs
 	end
 	function funcs.CreateSwitch(text,func,default)
-		configTable[pageName]["Switch"..text] = text
+		configTable[pageName]["Switch"..text] = default
 		local default = default or false
 		local text = text ~= nil and tostring(text) or "Switch"
 		local d = default
@@ -582,7 +581,7 @@ function pageList.AddPage(pageName)
 		return funcs
 	end
 	function funcs.CreateSlider(text,minVal,maxVal,step,func,default)
-		configTable[pageName]["Slider"..text] = text
+		configTable[pageName]["Slider"..text] = default
 		local default = default or minVal
 		local d = default
 		local actualMinVal = 0
@@ -653,9 +652,8 @@ function pageList.AddPage(pageName)
 						end
 					end
 					stepButton.BackgroundTransparency = 0
-					step = cStep+minVal
-					configTable[pageName]["Slider"..text] = step
-					func(step)
+					configTable[pageName]["Slider"..text] = cStep+minVal
+					func(cStep+minVal)
 				end
 			end
 			stepButton.MouseEnter:Connect(function()
@@ -835,7 +833,8 @@ if configs then
 			task.wait(5)
 			doubleClick = false
 		else
-			save("Fire~HUB/"..text..".Fire",configTable)
+			pagelist.Notify(text,2)
+			save("Fire~HUB/"..text..game.PlaceId..".Fire",configTable)
 		end
 	end)
 	local doubleClick2 = false
@@ -846,8 +845,9 @@ if configs then
 			task.wait(5)
 			doubleClick2 = false
 		else
+			pagelist.Notify(text,2)
 			local originalText
-			if pathExist("Fire~HUB/"..text..".Fire") then
+			if pathExist("Fire~HUB/"..text..game.PlaceId..".Fire") then
 				originalText = text
 				text = "Default"
 			end
