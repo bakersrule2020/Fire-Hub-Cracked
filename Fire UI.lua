@@ -100,7 +100,6 @@ invisTopFrame.BackgroundTransparency = 1
 invisTopFrame.AnchorPoint = Vector2.new(0.5,0.5)
 invisTopFrame.Draggable = true
 invisTopFrame.Changed:Connect(function(state)
-	if state ~= "Position" then return end
 	mainFrame.Position = invisTopFrame.Position
 	mainFrame.Position = UDim2.new(mainFrame.Position.X.Scale,mainFrame.Position.X.Offset,0.5,mainFrame.Position.Y.Offset)
 end)
@@ -729,7 +728,6 @@ warn("Getting some info about place...")
 local placeName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
 if not game["Run Service"]:IsStudio() then
 	pageList.Notify("Please wait, loading script for game "..placeName.."...",5)
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/GetInfo.lua"))()
 end
 warn("Creating 'Main' page...")
 local page = pageList.CreatePage("Main")
@@ -808,4 +806,4 @@ pageList.Notify("FIRE-HUB almost loaded, wait a bit...",5)
 warn("Animating UI")
 game.TweenService:Create(mainFrame,TweenInfo.new(2,Enum.EasingStyle.Exponential),{Size = UDim2.fromScale(0.3,0.4)}):Play()
 mainFrame.Visible = true
-return pageList,close,screenGui --ooohhh yeah, babe
+return pageList,close,screenGui
