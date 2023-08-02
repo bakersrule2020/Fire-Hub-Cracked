@@ -808,4 +808,4 @@ pageList.Notify("FIRE-HUB almost loaded, wait a bit...",5)
 warn("Animating UI")
 game.TweenService:Create(mainFrame,TweenInfo.new(2,Enum.EasingStyle.Exponential),{Size = UDim2.fromScale(0.3,0.4)}):Play()
 mainFrame.Visible = true
-return pageList,close,screenGui
+return pageList,close,screenGui --ooohhh yeah, babe
