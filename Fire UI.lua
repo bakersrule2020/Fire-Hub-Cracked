@@ -103,7 +103,7 @@ invisTopFrame.Changed:Connect(function(state)
 	mainFrame.Position = invisTopFrame.Position
 	mainFrame.Position = UDim2.new(mainFrame.Position.X.Scale,mainFrame.Position.X.Offset,0.5,mainFrame.Position.Y.Offset)
 end)
-local configTable = {}
+--local configTable = {}
 invisTopFrame.Position = UDim2.fromScale(0.5,0.32)
 invisTopFrame.Size = UDim2.fromScale(0.3,0.04)
 local title = Instance.new("TextLabel",topFrame)
@@ -291,7 +291,7 @@ function pageList.AddPage(pageName)
 		configEvent.Event:Connect(function()
 			task.wait(1)
 			pcall(function()
-				label.Text = configTable[pageName]["Label"..text]
+				--label.Text = configTable[pageName]["Label"..text]
 			end)
 		end)
 		local funcs = {}
@@ -409,7 +409,7 @@ function pageList.AddPage(pageName)
 		configEvent.Event:Connect(function()
 			task.wait(1)
 			pcall(function()
-				label.Text = configTable[pageName]["Button"..text]
+				--label.Text = configTable[pageName]["Button"..text]
 			end)
 		end)
 		label.MouseButton1Click:Connect(function()
@@ -454,7 +454,7 @@ function pageList.AddPage(pageName)
 			task.wait(1)
 			pcall(function()
 				local prevVal = label.Text
-				label.Text = configTable[pageName]["TextBox"..text]
+				--label.Text = configTable[pageName]["TextBox"..text]
 				if label.Text ~= prevVal then
 					func(label.Text)
 				end
@@ -509,6 +509,8 @@ function pageList.AddPage(pageName)
 		textHolder.BackgroundTransparency = 1
 		textHolder.Size = UDim2.fromScale(0.7,1)
 		textHolder.Text = text
+		textHolder.Active = false
+		textHolder.Selectable = false
 		local status = Instance.new("TextLabel",label)
 		status.Size = UDim2.fromScale(0.2,0.9)
 		status.Position = UDim2.fromScale(0.7,0.05)
@@ -527,7 +529,7 @@ function pageList.AddPage(pageName)
 			status.Text = "ON"
 			status.BackgroundColor3 = Color3.fromRGB(255,255,0)
 		end
-		label.MouseButton1Click:Connect(function()
+		local callback = function()
 			clickSound:Play()
 			toggle = not toggle
 			if not toggle then
@@ -539,7 +541,9 @@ function pageList.AddPage(pageName)
 			end
 			--configTable[pageName]["Switch"..text] = toggle
 			func(toggle)
-		end)
+		end
+		label.MouseButton1Click:Connect(callback)
+		textHolder.MouseButton1Click:Connect(callback)
 		local grad = Instance.new("UIGradient",status)
 		grad.Color = ColorSequence.new{ColorSequenceKeypoint.new(0,Color3.fromRGB(100,100,100)),ColorSequenceKeypoint.new(1,Color3.fromRGB(255,255,255))}
 		grad.Rotation = -90
@@ -571,8 +575,8 @@ function pageList.AddPage(pageName)
 		configEvent.Event:Connect(function()
 			task.wait(1)
 			local prevVal = toggle
-			funcs.SetValue(configTable[pageName]["Switch"..text])
-			toggle = configTable[pageName]["Switch"..text]
+			--funcs.SetValue(configTable[pageName]["Switch"..text])
+			--toggle = configTable[pageName]["Switch"..text]
 		end)
 		function funcs.ReturnToggle()
 			return label
@@ -686,7 +690,7 @@ function pageList.AddPage(pageName)
 		configEvent.Event:Connect(function()
 			task.wait(1)
 			local prevVal = step
-			step = configTable[pageName]["Switch"..text]
+			--step = configTable[pageName]["Switch"..text]
 			funcs.SetValue(step)
 		end)
 		function funcs.ReturnLabel()
@@ -866,4 +870,5 @@ pageList.Notify("FIRE-HUB almost loaded, wait a bit...",5)
 warn("Animating UI")
 game.TweenService:Create(mainFrame,TweenInfo.new(2,Enum.EasingStyle.Exponential),{Size = UDim2.fromScale(0.3,0.4)}):Play()
 mainFrame.Visible = true
+page.CreateSwitch("Test",print)
 return pageList,close,screenGui
