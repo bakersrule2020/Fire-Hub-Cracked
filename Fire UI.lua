@@ -623,7 +623,6 @@ function pageList.AddPage(pageName)
 		UITable.FillDirection = Enum.FillDirection.Horizontal
 		UITable.FillEmptySpaceColumns = true
 		UITable.SortOrder = Enum.SortOrder.LayoutOrder
-		local step = default
 		if default ~= minVal then
 			func(default)
 			currentStep.Text = tostring(default)
