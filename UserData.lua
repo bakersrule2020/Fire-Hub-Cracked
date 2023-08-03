@@ -1,5 +1,5 @@
 local whitelist = {
-  ["91f1e364c09e0e2b42b43bcd78d76f79"] = "whitelisted", --INFERNUS
+  ["91f1e364c09e0e2b42b43bcd78d76f79"] = "yes", --INFERNUS
   
   ["823e87f5b06a3fb8d2249e715a1d3535"] = "whitelisted", --titanzxd
   ["92aba5b46a07a91970141be86464c96a"] = "whitelisted", --titanzxd's brother
