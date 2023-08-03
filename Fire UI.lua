@@ -226,7 +226,7 @@ uis.InputBegan:Connect(function(input)
 	end
 end)
 configEvent.Event:Connect(function(name)
-	configTable = read("Fire~HUB/"..name..game.PlaceId..".Fire",{Defalt = {},name = {}})
+	--configTable = read("Fire~HUB/"..name..game.PlaceId..".Fire",{Defalt = {},name = {}})
 end)
 uis.InputEnded:Connect(function(input)
 	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
@@ -237,7 +237,7 @@ local pagesFolder = Instance.new("Folder",mainFrame)
 local pageList = {}
 warn("Creating UI functions")
 function pageList.AddPage(pageName)
-	configTable[tostring(pageName)] = typeof(configTable[tostring(pageName)]) == "table" and configTable[tostring(pageName)] or {}
+	--configTable[tostring(pageName)] = typeof(configTable[tostring(pageName)]) == "table" and configTable[tostring(pageName)] or {}
 	local btn = Instance.new("TextButton",pagelist)
 	btn.Text = pageName
 	btn.TextScaled = true
@@ -274,7 +274,7 @@ function pageList.AddPage(pageName)
 		btn.Visible = bool
 	end
 	function funcs.CreateLabel(text)
-		configTable[pageName]["Label"..text] = text
+		--configTable[pageName]["Label"..text] = text
 		local label = Instance.new("TextLabel",frame)
 		label.Text = text
 		label.Font = Font
@@ -285,7 +285,7 @@ function pageList.AddPage(pageName)
 		label.TextXAlignment = Enum.TextXAlignment.Left
 		label:GetPropertyChangedSignal("Text"):Connect(function()
 			pcall(function()
-				configTable[pageName]["Label"..text] = label.Text
+				--configTable[pageName]["Label"..text] = label.Text
 			end)
 		end)
 		configEvent.Event:Connect(function()
@@ -393,7 +393,7 @@ function pageList.AddPage(pageName)
 		return funcs
 	end
 	function funcs.CreateButton(text,func)
-		configTable[pageName]["Button"..text] = text
+		--configTable[pageName]["Button"..text] = text
 		local label = Instance.new("TextButton",frame)
 		label.Text = "["..text.."]"
 		label.Font = Font
@@ -403,7 +403,7 @@ function pageList.AddPage(pageName)
 		label.TextColor3 = Color3.fromRGB(255,200,100)
 		label:GetPropertyChangedSignal("Text"):Connect(function()
 			pcall(function()
-				configTable[pageName]["Button"..text] = label.Text
+				--configTable[pageName]["Button"..text] = label.Text
 			end)
 		end)
 		configEvent.Event:Connect(function()
@@ -431,7 +431,7 @@ function pageList.AddPage(pageName)
 		return funcs
 	end
 	function funcs.CreateTextBox(text,func,default)
-		configTable[pageName]["TextBox"..text] = default
+		--configTable[pageName]["TextBox"..text] = default
 		local default = default or ""
 		local d = default
 		local label = Instance.new("TextBox",frame)
@@ -447,7 +447,7 @@ function pageList.AddPage(pageName)
 		label.TextXAlignment = Enum.TextXAlignment.Left
 		label:GetPropertyChangedSignal("Text"):Connect(function()
 			pcall(function()
-				configTable[pageName]["TextBox"..text] = label.Text
+				--configTable[pageName]["TextBox"..text] = label.Text
 			end)
 		end)
 		configEvent.Event:Connect(function()
@@ -490,7 +490,7 @@ function pageList.AddPage(pageName)
 		return funcs
 	end
 	function funcs.CreateSwitch(text,func,default)
-		configTable[pageName]["Switch"..text] = default
+		--configTable[pageName]["Switch"..text] = default
 		local default = default or false
 		local text = text ~= nil and tostring(text) or "Switch"
 		local d = default
@@ -537,7 +537,7 @@ function pageList.AddPage(pageName)
 				status.Text = "ON"
 				game.TweenService:Create(status,TweenInfo.new(0.1),{BackgroundColor3 = Color3.fromRGB(255,255,0)}):Play()
 			end
-			configTable[pageName]["Switch"..text] = toggle
+			--configTable[pageName]["Switch"..text] = toggle
 			func(toggle)
 		end)
 		local grad = Instance.new("UIGradient",status)
@@ -581,7 +581,7 @@ function pageList.AddPage(pageName)
 		return funcs
 	end
 	function funcs.CreateSlider(text,minVal,maxVal,step,func,default)
-		configTable[pageName]["Slider"..text] = default
+		--configTable[pageName]["Slider"..text] = default
 		local default = default or minVal
 		local d = default
 		local actualMinVal = 0
@@ -652,7 +652,7 @@ function pageList.AddPage(pageName)
 						end
 					end
 					stepButton.BackgroundTransparency = 0
-					configTable[pageName]["Slider"..text] = cStep+minVal
+					--configTable[pageName]["Slider"..text] = cStep+minVal
 					func(cStep+minVal)
 				end
 			end
@@ -819,7 +819,7 @@ page.CreateTextBox('Make notification: [Prefix: ";"] [Text,time] ',
 		pagelist.Notify(split[1],tonumber(split[2]))
 	end
 )
-page.CreateLabel("--Configs--")
+--[[page.CreateLabel("--Configs--")
 if configs then
 	local text = "default"
 	page.CreateTextBox("Config name",function(txt)
@@ -860,7 +860,7 @@ if configs then
 	end)
 else
 	page.CreateLabel("--Your exploit is dont support configs system--")
-end
+end]]
 warn("FIRE-HUB almost loaded, wait a bit...")
 pageList.Notify("FIRE-HUB almost loaded, wait a bit...",5)
 warn("Animating UI")
