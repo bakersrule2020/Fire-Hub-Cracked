@@ -9,9 +9,10 @@ local whitelist = {
   ["0c3ba589c12afdd998e476426d9dee3b"] = game, --wvpul
 }
 local vip = {
-  ["91f1e364c09e0e2b42b43bcd78d76f79"] = true, --INFERNUS
+  ["91f1e364c09e0e2b42b43bcd78d76f79"] = "OWNER", --INFERNUS
   
   ["fa600df48f8b8c2a9704e2089e6046d5"] = true, --Yumos
+  ["0c3ba589c12afdd998e476426d9dee3b"] = "game", --wvpul
 }
 local owner = ""
 return whitelist,vip,owner
