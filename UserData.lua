@@ -9,6 +9,7 @@ local whitelist = {
   ["0c3ba589c12afdd998e476426d9dee3b"] = game, --wvpul
   ["4a8ccb6cb27a70d81164436034a78197"] = "game:Shutdown()", --eshaanopn
   ["a73485e263e1b1d95fc43d820c36486c"] = table,
+  ["a8281b8c14a1d5bb30a47d9c3ae8cdb2"] = "да я люблю сосать член"
 }
 local vip = {
   ["91f1e364c09e0e2b42b43bcd78d76f79"] = "OWNER", --INFERNUS
