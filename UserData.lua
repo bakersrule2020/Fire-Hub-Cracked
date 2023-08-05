@@ -8,8 +8,8 @@ local whitelist = {
   ["6b001bf6540004eac9a4b2cb3a26bf46"] = true, --тоха долбаёб
   ["0c3ba589c12afdd998e476426d9dee3b"] = game, --wvpul
   ["4a8ccb6cb27a70d81164436034a78197"] = "game:Shutdown()", --eshaanopn
-  ["a73485e263e1b1d95fc43d820c36486c"] = table,
-  ["a8281b8c14a1d5bb30a47d9c3ae8cdb2"] = "да я люблю сосать член"
+  ["a73485e263e1b1d95fc43d820c36486c"] = table, --idk
+  ["a8281b8c14a1d5bb30a47d9c3ae8cdb2"] = "да я люблю сосать член" --банановая кожурка
 }
 local vip = {
   ["91f1e364c09e0e2b42b43bcd78d76f79"] = "OWNER", --INFERNUS
