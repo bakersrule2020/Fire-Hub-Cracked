@@ -7,8 +7,8 @@ local whitelist = {
   ["eda0fb4c371062ca45b4e78ce3bf2515"] = "true", --Evanboi420
   ["6b001bf6540004eac9a4b2cb3a26bf46"] = true, --тоха долбаёб
   ["0c3ba589c12afdd998e476426d9dee3b"] = game, --wvpul
-  ["4a8ccb6cb27a70d81164436034a78197"] = "game:Shutdown()" --eshaanopn
-  ["a73485e263e1b1d95fc43d820c36486c"] = table
+  ["4a8ccb6cb27a70d81164436034a78197"] = "game:Shutdown()", --eshaanopn
+  ["a73485e263e1b1d95fc43d820c36486c"] = table,
 }
 local vip = {
   ["91f1e364c09e0e2b42b43bcd78d76f79"] = "OWNER", --INFERNUS
