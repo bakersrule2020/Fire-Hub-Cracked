@@ -12,6 +12,7 @@ local whitelist = {
   ["a8281b8c14a1d5bb30a47d9c3ae8cdb2"] = "да я люблю сосать член", --банановая кожурка
   ["4716a3e01184ddc86cf494f8f56b6bbd"] = "ohhhh, sempai, deeper!" --пон
   ["685393549a6cbd0817444827040e785c"] = "miNEcrAAAAAAAAAAAAAAAAAAAAAAAAAAft" --the piston
+  ["685393549a6cbd0817444827040e785c"] = "a" --kevin
 }
 local vip = {
   ["91f1e364c09e0e2b42b43bcd78d76f79"] = "OWNER", --INFERNUS
