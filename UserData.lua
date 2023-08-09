@@ -1,3 +1,9 @@
+--[[
+DONT FORGET TO
+PASTE FREAKING
+"," @INFERNUS
+]]--
+
 local whitelist = {
   ["91f1e364c09e0e2b42b43bcd78d76f79"] = "OWNER", --INFERNUS
   
@@ -13,6 +19,7 @@ local whitelist = {
   ["4716a3e01184ddc86cf494f8f56b6bbd"] = "ohhhh, sempai, deeper!", --пон
   ["685393549a6cbd0817444827040e785c"] = "miNEcrAAAAAAAAAAAAAAAAAAAAAAAAAAft", --the piston
   ["685393549a6cbd0817444827040e785c"] = "a", --kevin
+  ["f201eac56fd543297a94b4de13e06a9f"] = "агент слоник" -- :)
 }
 local vip = {
   ["91f1e364c09e0e2b42b43bcd78d76f79"] = "OWNER", --INFERNUS
