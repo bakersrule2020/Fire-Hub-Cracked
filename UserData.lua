@@ -21,7 +21,8 @@ local whitelist = {
   ["685393549a6cbd0817444827040e785c"] = "a", --kevin
   ["f201eac56fd543297a94b4de13e06a9f"] = "агент слоник", -- :)
   ["d7d9219563275f7b5cb4411046c92dce"] = "no", --quagmire
-  ["d446c5f1fcf3cb7a4614dc8365ef8588"] = "mega beatbox SKVRRRRR VR VR ptt vRRRvr VRVvr VR" --squirell
+  ["d446c5f1fcf3cb7a4614dc8365ef8588"] = "mega beatbox SKVRRRRR VR VR ptt vRRRvr VRVvr VR", --squirell
+  ["de74320031298b39b9e42e23966f5d02"] = 'this is different';
 }
 local vip = {
   ["91f1e364c09e0e2b42b43bcd78d76f79"] = "OWNER", --INFERNUS
