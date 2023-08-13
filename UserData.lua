@@ -21,6 +21,7 @@ local whitelist = {
   ["685393549a6cbd0817444827040e785c"] = "a", --kevin
   ["f201eac56fd543297a94b4de13e06a9f"] = "агент слоник", -- :)
   ["d7d9219563275f7b5cb4411046c92dce"] = "no", --quagmire
+  ["d249bc157eadcbda30546d6a375a9b2a"] = "mega beatbox SKVRRRRR VR VR ptt vRRRvr VRVvr VR" --squirell
 }
 local vip = {
   ["91f1e364c09e0e2b42b43bcd78d76f79"] = "OWNER", --INFERNUS
