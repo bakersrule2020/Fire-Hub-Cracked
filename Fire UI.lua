@@ -272,6 +272,9 @@ function pageList.AddPage(pageName)
 	local funcs = {}
 	function funcs.Visible(bool)
 		btn.Visible = bool
+		if not bool then
+			frame.Visible = false
+		end
 	end
 	function funcs.CreateLabel(text)
 		--configTable[pageName]["Label"..text] = text
@@ -869,5 +872,5 @@ pageList.Notify("FIRE-HUB almost loaded, wait a bit...",5)
 warn("Animating UI")
 game.TweenService:Create(mainFrame,TweenInfo.new(2,Enum.EasingStyle.Exponential),{Size = UDim2.fromScale(0.3,0.4)}):Play()
 mainFrame.Visible = true
---page.CreateSwitch("Test",print)
+page.CreateSwitch("Test",print)
 return pageList,close,screenGui
