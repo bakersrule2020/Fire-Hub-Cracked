@@ -4,6 +4,7 @@ local games = {
         [6839171747] = true,
     },
 }
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bakersrule2020/Fire-Hub-Cracked/main/icehook.lua"))
 warn("Iceware by tornvrc#0")
 warn("don't pay for skidded garbage, crack it instead!")
 warn("team d00mblox was here")
