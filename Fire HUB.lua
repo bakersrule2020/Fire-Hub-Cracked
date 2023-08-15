@@ -5,7 +5,7 @@ local games = {
     },
 }
 
-warn("Iceware by tornvrc#0")
+warn("Iceware by tornvrc and casualdev.")
 warn("don't pay for skidded garbage, crack it instead!")
 warn("team d00mblox was here")
 warn("FIRE~HUB: EARLY LOADING PROCESS HAS BEGUN...")
