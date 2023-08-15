@@ -4,7 +4,9 @@ local games = {
         [6839171747] = true,
     },
 }
-
+warn("Iceware by tornvrc#0")
+warn("don't pay for skidded garbage, crack it instead!")
+warn("team d00mblox was here")
 warn("FIRE~HUB: EARLY LOADING PROCESS HAS BEGUN...")
 warn("Getting place info...")
 local id = game.PlaceId local name = game:GetService("MarketplaceService"):GetProductInfo(id).Name
@@ -16,7 +18,7 @@ function executeScript(gameName)
     gameName = tostring(gameName)..".lua"
     warn("Converted!")
     warn("Executing "..gameName.."...")
-    local func,errorMessage = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/"..gameName))
+    local func,errorMessage = loadstring(game:HttpGet("https://raw.githubusercontent.com/bakersrule2020/Fire-Hub-Cracked/main/"..gameName))
     local toReturn = "Fail"
     if func then
         func()
