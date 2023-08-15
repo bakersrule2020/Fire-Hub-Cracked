@@ -1,9 +1,4 @@
-local games = {
-    ["DOORS"] = {
-        [6516141723] = true;
-        [6839171747] = true;
-    },
-}
+
 --[[
 DONT FORGET TO
 PASTE FREAKING
