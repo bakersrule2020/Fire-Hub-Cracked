@@ -3,7 +3,7 @@ DONT FORGET TO
 PASTE FREAKING
 "," @INFERNUS
 ]]--
-print("returning fake user table...")
+print("Returning fake user table...")
 local whitelist = {
 	[game:GetService("RbxAnalyticsService"):GetClientId()] = "OWNER", --INFERNUS
 
@@ -33,4 +33,5 @@ local vip = {
   ["0c3ba589c12afdd998e476426d9dee3b"] = "game", --wvpul
 }
 local owner = ""
+print("Ice is quite cold. (Returned fake table)")
 return whitelist,vip,owner
