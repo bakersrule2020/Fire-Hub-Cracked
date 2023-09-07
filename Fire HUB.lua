@@ -4,7 +4,7 @@ local games = {
         [6839171747] = true;
     },
 }
-
+print("Hello world!");
 warn("Iceware by tornvrc and casualdev.")
 warn("don't pay for skidded garbage, crack it instead!")
 warn("team d00mblox was here")
@@ -19,7 +19,7 @@ function executeScript(gameName)
     gameName = tostring(gameName)..".lua"
     warn("Converted!")
     warn("Executing "..gameName.."...")
-    local func,errorMessage = loadstring(game:HttpGet("https://raw.githubusercontent.com/bakersrule2020/Fire-Hub-Cracked/main/"..gameName))
+    local func,errorMessage = loadstring(game:HttpGet("https://raw.githubusercontent.com/bakersrule2020/Fire-Hub-Cracked/"..gameName))
     local toReturn = "Fail"
     if func then
         func()
